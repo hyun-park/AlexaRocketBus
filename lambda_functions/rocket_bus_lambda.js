@@ -3,7 +3,7 @@ const Alexa = require('alexa-sdk');
 
 var http = require('http');
 
-const API_URL = "BUS API URL";
+const API_URL = "http://rocketbus.ap-northeast-2.elasticbeanstalk.com/api/bus";
 
 
 function secondsToString(seconds)
@@ -14,9 +14,7 @@ function secondsToString(seconds)
 }
 
 
-// 요청을 처리하는 Handlers Object
 const handlers = {
-    // "Open Rocket Bus" 라고 말하면 실행되는 function
     "LaunchRequest": function () {
         var alexa = this;
 
@@ -54,7 +52,6 @@ const handlers = {
             // context.done(null, 'FAILURE');
         });
     },
-    // "Tell Rocket Bus {Intent Words}" 라고 말하면 실행되는 function
     "RocketBusIntent": function () {
         this.response.speak("Hello, Junghyun");
         this.emit(':responseReady');
@@ -64,5 +61,6 @@ const handlers = {
 exports.handler = function(event, context, callback){
     var alexa = Alexa.handler(event, context);
     alexa.registerHandlers(handlers);
+
     alexa.execute();
 };
