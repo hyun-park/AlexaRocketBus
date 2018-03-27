@@ -26,3 +26,5 @@ Say, "Alexa, Open `Skill Name`." (e.g "Alexa, Open `Rocket Bus`.") It's DONE!
 
 
 ## Architecture
+
+![Skill Architecture](https://github.com/Rocket-Hyun/AlexaRocketBus/blob/master/alexa-rocket-bus-architecture.001.jpeg?raw=true)
