@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 
+
+app.use(express.static('public'));
+
 var fs = require('fs');
 var busRawKey = fs.readFileSync('./credentials/bus_service_key.json');
 var busServiceKey = JSON.parse(busRawKey)["serviceKey"];
