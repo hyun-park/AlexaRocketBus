@@ -11,6 +11,9 @@ var subwayRawKey = fs.readFileSync('./credentials/subway_service_key.json');
 var subwayServiceKey = "sample";
 var subwayId = JSON.parse(subwayRawKey)["subwayStationId"];
 
+var SlackRawKey = fs.readFileSync('./credentials/service_key.json');
+var slackToken = JSON.parse(SlackRawKey)["slackToken"];
+
 
 const BUS_API_URL = "http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRouteAll?serviceKey=" + busServiceKey;
 const SUBWAY_API_URL = "http://swopenapi.seoul.go.kr/api/subway/" + subwayServiceKey + "/xml/realtimeStationArrival/1/5/" + subwayId;
@@ -47,5 +50,16 @@ app.get('/api/subway/:direction', function(req, res){
         });
     });
 });
+
+var Bot = require('slackbots');
+
+// create a bot
+var settings = { token: slackToken, name: 'noti' };
+var bot = new Bot(settings);
+
+app.get('/findMyPhone', function (req, res){
+    bot.postMessageToChannel('general', 'Where is My Phone!');
+    res.json({msg:"done"});
+})
 
 module.exports = app;
